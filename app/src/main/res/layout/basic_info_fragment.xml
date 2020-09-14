@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="basicInfoViewModel"
+            type="com.abhisek.rednit.ui.signup.basicInfo.viewmodel.BasicInfoViewModel" />
+
+        <variable
+            name="userViewModel"
+            type="com.abhisek.rednit.viewmodel.UserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.signup.basicInfo.view.BasicInfoFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Display Name"
+                android:textColor="#EF5350"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:fontFamily="@font/roboto_light"
+                android:hint="John Doe"
+                android:inputType="textPersonName"
+                android:text="@={basicInfoViewModel.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:text="This is how it will appear to others"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="@+id/etName"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/etName" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Birthday"
+                android:textColor="#EF5350"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:text="Age will be public"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="@+id/txtDob"
+                app:layout_constraintStart_toStartOf="@+id/txtDob"
+                app:layout_constraintTop_toBottomOf="@+id/txtDob" />
+
+            <TextView
+                android:id="@+id/txtDob"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto_light"
+                android:onClick="@{() -> basicInfoViewModel.showDatePicker()}"
+                android:text="@{basicInfoViewModel.date}"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Gender"
+                android:textColor="#EF5350"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <CheckBox
+                android:id="@+id/btnMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gender_background"
+                android:button="@android:color/transparent"
+                android:checked="@{basicInfoViewModel.isMale}"
+                android:clickable="true"
+                android:focusable="true"
+                android:minWidth="100dp"
+                android:onClick="@{() -> basicInfoViewModel.updateGender(true)}"
+                android:padding="8dp"
+                android:text="Male"
+                android:textAlignment="center"
+                android:textColor="@color/checkbox_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                tools:enabled="true" />
+
+            <CheckBox
+                android:id="@+id/btnFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/gender_background"
+                android:button="@android:color/transparent"
+                android:checked="@{!basicInfoViewModel.isMale}"
+                android:clickable="true"
+                android:focusable="true"
+                android:minWidth="100dp"
+                android:onClick="@{() -> basicInfoViewModel.updateGender(false)}"
+                android:padding="8dp"
+                android:text="Female"
+                android:textAlignment="center"
+                android:textColor="@color/checkbox_color"
+                app:layout_constraintBottom_toBottomOf="@+id/btnMale"
+                app:layout_constraintStart_toEndOf="@+id/btnMale"
+                app:layout_constraintTop_toTopOf="@+id/btnMale"
+                tools:enabled="false" />
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#EF5350"
+                android:onClick="@{() -> basicInfoViewModel.validateUser()}"
+                android:text="Continue"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnFemale"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_round_account_circle_56"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="2dp"
+                app:civ_circle_background_color="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> basicInfoViewModel.showImagePicker()}"
+                android:scaleType="center"
+                android:tint="@android:color/white"
+                app:backgroundTint="@color/colorPrimary"
+                app:fabCustomSize="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:srcCompat="@drawable/ic_round_edit_16" />
+
+            <TextView
+                android:id="@+id/txtError"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/roboto_light"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMale"
+                tools:text="Somre really long error message" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

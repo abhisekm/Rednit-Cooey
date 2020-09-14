@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="profileViewModel"
+            type="com.abhisek.rednit.viewmodel.ProfilesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EEEEEE"
+        tools:context=".ui.profileList.view.ProfileListFragment">
+
+
+        <com.yuyakaido.android.cardstackview.CardStackView
+            android:id="@+id/card_stack_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:padding="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnSkip"
+            app:layout_constraintDimensionRatio="2:3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            android:onClick="@{() -> profileViewModel.likeProfile()}"
+            android:src="@drawable/ic_baseline_like"
+            android:tint="@android:color/holo_green_dark"
+            app:backgroundTint="@color/ef_white"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSkip"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnSkip" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:onClick="@{() -> profileViewModel.skipProfile()}"
+            android:src="@drawable/ic_round_clear_24"
+            android:tint="@android:color/holo_red_dark"
+            app:backgroundTint="@color/ef_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_stack_view" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnUndo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="@{() -> profileViewModel.undoProfile()}"
+            android:src="@drawable/ic_baseline_replay_24"
+            android:tint="@android:color/holo_orange_light"
+            app:backgroundTint="@color/ef_white"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSkip"
+            app:layout_constraintEnd_toStartOf="@+id/btnLike"
+            app:layout_constraintStart_toEndOf="@+id/btnSkip"
+            app:layout_constraintTop_toTopOf="@+id/btnSkip" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
